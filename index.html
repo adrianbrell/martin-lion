@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Grundgerüst Dr. Lion (Kunde 15), Entwurf</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:16px;line-height:1.6;color:#22303C;background:#F7F8FA;overflow-x:hidden;padding-bottom:64px}
+a{color:inherit}
+.in{max-width:1200px;margin:0 auto;padding:0 28px}
+section{padding:64px 0;text-align:center}
+section+section{border-top:1px solid #2D5C88}
+#kontakt{border-top:1px solid #8FB0CC;background:linear-gradient(180deg,#2D5C88 0%,#1C2B38 100%)}
+.hell{background:#F7F8FA}
+.tint{background:#E4EBF1}
+.tint2{background:#C9D8E4;color:#1C2B38}
+.blau{background:#2D5C88;color:#fff}
+.dunkel{background:#1C2B38;color:#fff}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#2D5C88;margin:0 0 10px}
+.blau .eyebrow,.dunkel .eyebrow{color:#C9D8E4}
+h1,h2,h3{font-family:'Libre Caslon Text',Georgia,serif;font-weight:400;color:#1C2B38;line-height:1.2;margin:0 0 14px;text-wrap:balance}
+.blau h1,.blau h2,.dunkel h2{color:#fff}
+h1{font-size:34px}
+h2{font-size:28px}
+h3{font-size:20px}
+.sub{font-size:17px;color:#3A4650;max-width:620px;margin:0 auto 22px}
+.blau .sub{color:#E4EBF1}
+.tint2 .sub{color:#22303C}
+.btn{display:inline-block;background:#2D5C88;color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:8px;transition:background .2s}
+.btn:hover{background:#244B70}
+.btn.hell{background:#fff;color:#2D5C88;border:1px solid #C9D8E4}
+.btn.hell:hover{background:#E4EBF1}
+.btn.klein{padding:9px 18px;font-size:15px;border-radius:8px}
+.tel{margin:14px 0 0;font-size:15px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 24px;padding:0;list-style:none}
+.pills li{background:#fff;color:#2D5C88;border:1px solid #DDE3EA;border-radius:8px;padding:6px 14px;font-size:14px}
+.hinweis{font-size:13px;color:#3A4650;max-width:680px;margin:0 auto}
+.grid{display:grid;gap:16px;text-align:left;margin-top:28px}
+.card{background:#fff;border-radius:8px;padding:22px;border:1px solid #DDE3EA}
+#ueber .card,#leistungen .card,#ablauf .card,#fuerwen .card{border-top:3px solid #2D5C88}
+.nr{font-family:'Libre Caslon Text',Georgia,serif;font-size:32px;color:#2D5C88;margin:0 0 4px;line-height:1}
+#ablauf .card{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center}
+#ablauf .card h3{margin:0}
+#ablauf .card p:last-child{grid-column:1/-1;margin-top:10px}
+.top{background:#C9D8E4}
+.topin{display:flex;justify-content:center;align-items:center;padding:10px 28px;position:relative}
+.topin .btn.klein{position:absolute;right:28px;top:50%;transform:translateY(-50%)}
+.logo-platz{display:flex;align-items:center;justify-content:center;width:130px;height:44px;border:1px dashed #2D5C88;border-radius:8px;color:#2D5C88;font-size:12px;text-decoration:none}
+#kopf{position:relative;overflow:hidden;min-height:calc(100svh - 65px);display:flex;flex-direction:column;padding:0;text-align:center;background:linear-gradient(180deg,rgba(28,43,56,.86) 0%,rgba(28,43,56,.95) 100%),url("https://images.unsplash.com/photo-1671493228689-754b0f200c84?w=1200&q=60") center/cover no-repeat,#2D5C88;color:#fff}
+#kopf .in{}
+#kopf .in{flex:1;display:flex;flex-direction:column;padding-top:28px;padding-bottom:0;width:100%}
+#kopf .mitte{margin:auto 0;display:flex;flex-direction:column;align-items:center;gap:36px}
+#kopf .unten{display:flex;flex-direction:column;align-items:center}
+#kopf .linie{width:100vw;height:1px;background:#2D5C88;margin:0 0 20px;position:relative;left:50%;transform:translateX(-50%)}
+.siegel{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#2D5C88;padding:0 0 22px;margin:0}
+.fa{opacity:0;animation:fIn .6s ease-out forwards}
+.fussleiste{width:100%;border-top:1px solid #2D5C88;height:72px}
+#kopf .in{position:relative;z-index:2}
+.zahl1993{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;white-space:nowrap;font-family:'Libre Caslon Text',Georgia,serif;font-size:15vw;line-height:1;color:rgba(255,255,255,.08);z-index:1;pointer-events:none}
+@media(max-width:899px){.raster1993{display:none}}
+.raster1993{position:absolute;left:0;right:0;top:0;bottom:72px;z-index:1;pointer-events:none;display:none}
+.fussleiste .in{padding-top:18px}
+#kopf h1{color:#fff}
+#kopf .eyebrow{color:#C9D8E4}
+#kopf .sub{color:#E4EBF1}
+#kopf .pills li{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
+#kopf .btn{background:#fff;color:#2D5C88;border:1px solid #C9D8E4}
+#kopf .btn:hover{background:#E4EBF1}
+#kopf .tel{color:#E4EBF1}
+#kopf .siegel{color:#C9D8E4}
+#kopf .fussleiste{border-top-color:#C9D8E4}
+.w{display:inline-block;opacity:0;filter:blur(6px);animation:wIn .5s ease-out forwards;animation-delay:calc(var(--i) * 60ms + 200ms)}
+@keyframes wIn{to{opacity:1;filter:blur(0)}}
+@keyframes fIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.zeit{display:flex;height:70px;border-radius:8px;overflow:hidden;margin:26px auto 8px;max-width:900px;border:1px solid #8FB0CC}
+.zeit div+div{border-left:1px solid #8FB0CC}
+.zeit div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.25);text-align:center;padding:6px}
+.z1{flex:45;background:#2D5C88}
+.z2{flex:30;background:#3E6F98}
+.z3{flex:25;background:#4A7AA3}
+.zlabels{display:flex;text-align:center;font-size:13px;color:#3A4650;margin:0 auto 24px;max-width:900px}
+.zlabels div:nth-child(1){flex:45}
+.zlabels div:nth-child(2){flex:30}
+.zlabels div:nth-child(3){flex:25}
+.zeiten{display:grid;gap:16px;margin-top:28px}
+.zc{background:#fff;border-radius:8px;padding:30px 22px;border-top:3px solid #2D5C88}
+.zc .zl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#2D5C88;font-weight:600;margin:0 0 10px}
+.zc .zz{font-size:15px;color:#3A4650;margin:0 0 4px}
+.zc .zu{font-family:'Libre Caslon Text',Georgia,serif;font-size:28px;color:#1C2B38;margin:0;line-height:1.2}
+details{background:#fff;border-radius:8px;padding:16px 20px;margin:0 auto 10px;max-width:760px;text-align:left;border:1px solid #8FB0CC}
+summary{cursor:pointer;font-weight:600;color:#1C2B38}
+details p{margin:10px 0 0;color:#3A4650}
+.fgrid{display:grid;gap:26px;text-align:left;padding-top:56px;padding-bottom:28px}
+.fgrid p{margin:0 0 4px;color:#E4EBF1;font-size:15px}
+.fgrid .fn{font-family:'Libre Caslon Text',Georgia,serif;font-size:18px;color:#fff;margin-bottom:8px}
+.fgrid a{color:#C9D8E4;text-decoration:underline;text-underline-offset:3px;display:inline-block;margin-bottom:4px}
+.fbot{border-top:1px solid #8FB0CC;padding:18px 28px 22px;text-align:left;font-size:13px;color:#C9D8E4}
+.fbot .in{padding:0}
+section>.in>:last-child{margin-bottom:0!important}
+.js .card,.js .zc,.js .nr,.js .zeit{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.js .in-view{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .card,.js .zc,.js .nr,.js .zeit{opacity:1;transform:none;transition:none}.fa,.w{opacity:1;filter:none;animation:none;transform:none}}
+.leiste{position:fixed;left:0;right:0;bottom:0;background:#2D5C88;color:#fff;text-align:center;padding:14px;font-weight:600;text-decoration:none;z-index:10;border-top:1px solid #C9D8E4}
+@media(max-width:899px){
+  #kopf{min-height:calc(100svh - 60px)}
+  .top .btn.klein{display:none}
+  #kopf .in{padding:20px 22px 28px}
+  #kopf .mitte{gap:24px}
+  .zeit{flex-direction:column;height:auto;margin:26px auto 8px}
+  .zeit div{height:auto;min-height:60px;font-size:15px;padding:14px 18px;text-align:center}
+  .zlabels{display:none}
+  .zeit div+div{border-left:0;border-top:1px solid #8FB0CC}
+  .fgrid,.fbot{text-align:center}
+  body{padding-bottom:88px;background:#1C2B38}
+  .fgrid{padding-top:32px}
+  footer.dunkel{border-top:1px solid #8FB0CC}
+}
+@media(min-width:900px){
+  section{padding:104px 0}
+  h1{font-size:50px}
+  h2{font-size:38px}
+  #kopf h1{font-size:68px}
+  #kopf .sub{max-width:640px;font-size:19px;font-weight:500}
+  #kopf .pills{gap:20px}
+  #kopf .pills li{font-size:15px;padding:8px 18px}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .grid.zwei{grid-template-columns:repeat(2,1fr)}
+  .grid.vier{grid-template-columns:repeat(4,1fr)}
+  .zeiten{grid-template-columns:repeat(3,1fr)}
+  .fgrid{grid-template-columns:1.3fr 1fr 1fr}
+  .leiste{display:none}
+  body{padding-bottom:0}
+  .topin{justify-content:space-between}
+  .topin .btn.klein{position:static;transform:none;padding:12px 40px;min-width:200px;text-align:center}
+  #kopf .mitte{margin:9vh 0 auto}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in topin">
+    <a class="logo-platz" href="#">Logo folgt</a>
+    <a class="btn klein" href="tel:+497319217071">Termin</a>
+  </div>
+</header>
+
+<section class="tint" id="kopf">
+  <div class="raster1993"></div>
+  <div class="in">
+    <div class="oben fa" style="animation-delay:0s">
+      <p class="eyebrow" style="margin-top:12px">Dr. med. Martin Lion · Facharzt für Allgemeinmedizin</p>
+    </div>
+    <div class="mitte">
+      <h1><span class="w" style="--i:0">Klassische</span> <span class="w" style="--i:1">Homöopathie</span> <span class="w" style="--i:2">in</span> <span class="w" style="--i:3">Ulm</span></h1>
+      <p class="sub fa" style="animation-delay:.5s">Ich nehme mir Zeit für Sie. Das ausführliche Erstgespräch dauert etwa 1 bis 2 Stunden, inklusive Untersuchung.</p>
+      <ul class="pills fa" style="animation-delay:.6s"><li>Praxis seit 1993</li><li>Kinder und Erwachsene</li><li>Feichtmayrweg 7</li></ul>
+      <a class="btn fa" style="animation-delay:.7s" href="tel:+497319217071">Termin vereinbaren</a>
+      <div class="fa" style="animation-delay:.8s;display:flex;flex-direction:column;align-items:center;gap:4px"><p class="tel" style="margin:0">Tel. 0731 9217071</p>
+      <p class="tel" style="margin:0">Di bis Do, 8 bis 11:30 Uhr</p></div>
+    </div>
+  </div>
+  <div class="fussleiste">
+    <div class="in"><span class="siegel fa" style="animation-delay:.9s">Praxis seit 1993</span></div>
+  </div>
+</section>
+
+<section class="hell" id="ueber">
+  <div class="in">
+    <p class="eyebrow">Vertrauen</p>
+    <h2>Seit 1993 für Sie da in Ulm</h2>
+    <p class="sub">Homöopathische Privatpraxis in Ulm, eigene Praxis seit 1993.</p>
+    <div style="margin:0 auto 28px;width:min(640px,90%);height:240px;border:1px dashed #2D5C88;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#2D5C88;font-size:14px">Foto folgt</div>
+    <div class="grid zwei">
+      <div class="card"><h3>Ausbildung</h3><p>Medizinstudium in Ulm, danach Unfallchirurgie, Allgemeinmedizin und Klassische Homöopathie.</p></div>
+      <div class="card"><h3>Lehre</h3><p>Mehrjähriger Lehrauftrag an der Uni Ulm (Wahlfach Homöopathie).</p></div>
+      <div class="card"><h3>Prüfer und Mitglied</h3><p>Prüfer für die Zusatzbezeichnung Homöopathie bei der Bezirksärztekammer Südwürttemberg. Mitglied im DZvhÄ.</p></div>
+      <div class="card"><h3>Supervision</h3><p>Fachlicher Austausch mit Kolleginnen und Kollegen.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="in">
+    <p class="eyebrow">Erstgespräch</p>
+    <h2>Was im Erstgespräch passiert</h2>
+    <p class="sub">Eine ausführliche Anamnese braucht Zeit. Deshalb planen wir 1 bis 2 Stunden ein.</p>
+    <div class="zeit"><div class="z1">Ihre Geschichte erzählen</div><div class="z2">Nachfragen und Untersuchung</div><div class="z3">Das passende Mittel finden</div></div>
+    <div class="zlabels"><div>Anfang</div><div>Mitte</div><div>Ende</div></div>
+    <p class="sub" style="margin:28px auto 0">Die Aufteilung ist grob, der Ablauf richtet sich nach Ihrem Anliegen. Danach folgt die Verlaufskontrolle, in der Regel nach mehreren Wochen.</p>
+  </div>
+</section>
+
+<section class="hell" id="fuerwen">
+  <div class="in">
+    <p class="eyebrow">Für wen</p>
+    <h2>Für Erwachsene und Kinder</h2>
+    <p class="sub">Klassische Homöopathie ist in jedem Lebensalter möglich.</p>
+    <div class="grid">
+      <div class="card" style="border-top:3px solid #2D5C88"><h3>Erwachsene mit langwierigen Beschwerden</h3><p>Wenn Beschwerden länger andauern und Sie in Ruhe darüber sprechen möchten.</p></div>
+      <div class="card" style="border-top:3px solid #2D5C88"><h3>Eltern für ihre Kinder</h3><p>Für Kinder und Jugendliche. Als Eltern bekommen Sie Zeit für alle Ihre Fragen.</p></div>
+      <div class="card" style="border-top:3px solid #2D5C88"><h3>Menschen mit einer geplanten Behandlung</h3><p>Wenn eine ärztliche Behandlung ansteht und Sie vorher noch Fragen haben.</p></div>
+    </div>
+    <p class="sub" style="margin:26px auto 0;color:#2D5C88;font-weight:500">Nicht sicher, ob es für Sie passt? Rufen Sie an, dann klären wir es am Telefon.</p>
+    <p class="hinweis" style="margin-top:18px">Diese Angaben sind Vorschläge und müssen von Dr. Lion bestätigt werden.</p>
+  </div>
+</section>
+
+<section class="tint2">
+  <div class="in">
+    <p class="eyebrow">Zweitmeinung</p>
+    <h2>Zweitmeinung zu einer geplanten Behandlung</h2>
+    <p class="sub">Vor einer Entscheidung lohnt ein zweiter Blick. Sprechen Sie mich an.</p>
+    <a class="btn" href="tel:+497319217071">Zweitmeinung anfragen</a>
+    <p class="tel" style="color:#1C2B38">Tel. 0731 9217071</p>
+    <p class="hinweis" style="color:#3A4650;margin-top:20px">Eine Zweitmeinung ersetzt keine ärztliche Diagnose oder Behandlung. Die Entscheidung bleibt bei Ihnen und Ihrem behandelnden Arzt.</p>
+  </div>
+</section>
+
+<section class="hell" id="leistungen">
+  <div class="in">
+    <p class="eyebrow">Leistungen</p>
+    <h2>Was ich anbiete</h2>
+    <div class="grid">
+      <div class="card"><h3>Klassische Homöopathie</h3><p>Akut und chronisch, für jedes Lebensalter. Ausführliches Erstgespräch, danach das individuell passende Mittel.</p></div>
+      <div class="card"><h3>Zweitmeinung</h3><p>Bei anstehenden ärztlichen Behandlungen, zum Beispiel vor einer Operation.</p></div>
+      <div class="card"><h3>Vorträge</h3><p>Zum Beispiel zur Immunstärkung. Auf Anfrage in geeigneten Einrichtungen.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="ablauf">
+  <div class="in">
+    <p class="eyebrow">Ablauf</p>
+    <h2>So läuft es ab</h2>
+    <div class="grid vier">
+      <div class="card"><p class="nr">1</p><h3>Anrufen</h3><p>Termin telefonisch vereinbaren, Di bis Do, 8 bis 11:30 Uhr.</p></div>
+      <div class="card"><p class="nr">2</p><h3>Erstgespräch</h3><p>Etwa 1 bis 2 Stunden, inklusive Untersuchung.</p></div>
+      <div class="card"><p class="nr">3</p><h3>Passendes Mittel</h3><p>Wir finden gemeinsam, was zu Ihnen passt.</p></div>
+      <div class="card"><p class="nr">4</p><h3>Verlauf</h3><p>Verlaufskontrollen, in der Regel im Abstand von mehreren Wochen.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="hell" id="sprechzeiten">
+  <div class="in">
+    <p class="eyebrow">Sprechzeiten</p>
+    <h2>Wann Sie mich erreichen</h2>
+    <div class="zeiten">
+      <div class="zc"><p class="zl">Telefon und Termine</p><p class="zz">Di bis Do</p><p class="zu">8 bis 11:30 Uhr</p></div>
+      <div class="zc"><p class="zl">Sprechzeiten</p><p class="zz">Di, Mi, Do</p><p class="zu">8 bis 12 Uhr</p></div>
+      <div class="zc"><p class="zl">Zusätzlich</p><p class="zz">Di und Do</p><p class="zu">16 bis 18 Uhr</p></div>
+    </div>
+    <p class="hinweis" style="margin-top:26px">Die Praxis ist vom 24.12.2026 bis 11.01.2027 nicht besetzt.</p>
+  </div>
+</section>
+
+<section class="tint" id="fragen">
+  <div class="in">
+    <p class="eyebrow">Fragen</p>
+    <h2>Häufige Fragen</h2>
+    <details><summary>Wie lange dauert das Erstgespräch?</summary><p>Etwa 1 bis 2 Stunden, inklusive Untersuchung.</p></details>
+    <details><summary>Was kostet das, zahlt die Krankenkasse?</summary><p>Dazu sprechen wir am Telefon.</p></details>
+    <details><summary>Ersetzt die Homöopathie meinen Arzt?</summary><p>Nein. Sie ersetzt keine ärztliche Diagnose oder Behandlung.</p></details>
+  </div>
+</section>
+
+<section class="blau" id="kontakt">
+  <div class="in">
+    <p class="eyebrow">Kontakt</p>
+    <h2>Lieber erst ein Gespräch?</h2>
+    <p class="sub">Rufen Sie an, dann klären wir alles Weitere.</p>
+    <a class="btn hell" href="tel:+497319217071">Termin vereinbaren</a>
+    <p class="tel" style="font-size:18px;margin-top:14px"><a href="tel:+497319217071" style="color:#fff;font-weight:600">0731 9217071</a></p>
+    <p class="tel">martin.lion@dr-homoeopathie.com</p>
+    <p class="tel">Feichtmayrweg 7, 89077 Ulm · Kostenlose Parkplätze am Ende der Straße, direkt am Haus</p>
+    <p class="hinweis" style="color:#E4EBF1;margin-top:26px">Die Klassische Homöopathie ist ein eigenständiges Verfahren. Sie ersetzt keine ärztliche Diagnose oder Behandlung.</p>
+  </div>
+</section>
+
+<footer class="dunkel">
+  <div class="in fgrid">
+    <div>
+      <p class="fn">Dr. med. Martin Lion</p>
+      <p>Praxis für Klassische Homöopathie</p>
+      <p>Feichtmayrweg 7, 89077 Ulm</p>
+    </div>
+    <div>
+      <p>Tel. 0731 9217071</p>
+      <p>Fax 0731 9217072</p>
+      <p>martin.lion@dr-homoeopathie.com</p>
+    </div>
+    <div>
+      <a href="https://www.dr-homoeopathie.com/impressum/">Impressum</a><br>
+      <a href="https://www.dr-homoeopathie.com/datenschutzerklaerung/">Datenschutz</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="in" style="padding:0">Entwurf von LÖVENBERG</div>
+  </div>
+</footer>
+
+<a class="leiste" href="tel:+497319217071">Jetzt anrufen</a>
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var els=document.querySelectorAll('.card,.zc,.nr,.zeit');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in-view')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in-view');io.unobserve(en.target);}});
+  },{threshold:.15});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+</body>
+</html>
